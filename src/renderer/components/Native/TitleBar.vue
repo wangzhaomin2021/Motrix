@@ -2,6 +2,10 @@
   <div class="title-bar">
     <div class="title-bar-dragger"></div>
     <ul v-if="showActions" class="window-actions">
+      <li @click="handleAlwaysOnTop" :class="{'on-top': isAlwaysOnTop}">
+        <!-- <mo-icon name="win-always-on-top" width="12" height="12" /> -->
+        <mo-icon name="win-on-top" width="12" height="12" />
+      </li>
       <li @click="handleMinimize">
         <mo-icon name="win-minimize" width="12" height="12" />
       </li>
@@ -20,6 +24,7 @@
   import '@/components/Icons/win-minimize'
   import '@/components/Icons/win-maximize'
   import '@/components/Icons/win-close'
+  import '@/components/Icons/win-on-top'
 
   export default {
     name: 'mo-title-bar',
@@ -28,15 +33,22 @@
         type: Boolean
       }
     },
+    data () {
+      return {
+        isAlwaysOnTop: false
+      }
+    },
     computed: {
       win () {
         return getCurrentWindow()
       }
     },
     methods: {
+      // 最小化
       handleMinimize () {
         this.win.minimize()
       },
+      // 最大化与还原
       handleMaximize () {
         if (this.win.isMaximized()) {
           this.win.unmaximize()
@@ -44,8 +56,14 @@
           this.win.maximize()
         }
       },
+      // 关闭窗口
       handleClose () {
         this.win.close()
+      },
+      // 是否置顶
+      handleAlwaysOnTop () {
+        this.isAlwaysOnTop = !this.isAlwaysOnTop
+        this.win.setAlwaysOnTop(this.isAlwaysOnTop)
       }
     }
   }
@@ -88,6 +106,9 @@
       &.win-close-btn:hover {
         color: $--titlebar-close-active-color;
         background-color: $--titlebar-close-active-background;
+      }
+      &.on-top {
+        transform: rotate(180deg);
       }
     }
   }

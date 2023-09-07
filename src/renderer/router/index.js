@@ -25,6 +25,12 @@ export default new Router({
           props: true
         },
         {
+          path: '/practice',
+          name: 'practice',
+          component: require('@/components/Practice/Index').default,
+          props: true // ?
+        },
+        {
           path: '/preference',
           name: 'preference',
           component: require('@/components/Preference/Index').default,

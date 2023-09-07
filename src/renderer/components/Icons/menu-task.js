@@ -1,5 +1,6 @@
 import Icon from '@/components/Icons/Icon'
 
+// aside menu-task
 Icon.register({
   'menu-task': {
     'width': 24,

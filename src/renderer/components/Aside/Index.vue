@@ -9,6 +9,9 @@
         <li @click="showAddTask()" class="non-draggable">
           <mo-icon name="menu-add" width="20" height="20" />
         </li>
+        <li @click="nav('/practice')" class="non-draggable">
+          <mo-icon name="menu-edit" width="20" height="20" viewBox="0 0 1159 1024" />
+        </li>
       </ul>
       <ul class="menu bottom-menu">
         <li @click="nav('/preference')" class="non-draggable">
@@ -29,6 +32,7 @@
   import LogoMini from '@/components/Logo/LogoMini'
   import '@/components/Icons/menu-task'
   import '@/components/Icons/menu-add'
+  import '@/components/Icons/menu-edit'
   import '@/components/Icons/menu-preference'
   import '@/components/Icons/menu-about'
 
@@ -59,6 +63,7 @@
       showAboutPanel () {
         this.$store.dispatch('app/showAboutPanel')
       },
+      // 路由跳转
       nav (page) {
         this.$router.push({
           path: page

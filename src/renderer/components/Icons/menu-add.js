@@ -1,5 +1,6 @@
 import Icon from '@/components/Icons/Icon'
 
+// menu-add
 Icon.register({
   'menu-add': {
     'width': 24,
